@@ -3,7 +3,7 @@ name: Deploy SAM Application
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'sam-comprehend/**'
   pull_request:
