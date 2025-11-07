@@ -31,7 +31,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./infra-s3
-        run: terraform init -input=false
+        run: terraform init import aws_s3_bucket.analysis kandidat-58-data
 
       - name: Terraform Format Check
         if: github.event_name == 'pull_request'
