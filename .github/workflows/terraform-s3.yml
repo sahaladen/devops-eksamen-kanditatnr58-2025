@@ -46,4 +46,5 @@ jobs:
 
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: terraform apply --auto-approve -no-color
+        working-directory: ./infra-s3
+        run: terraform apply -auto-approve -no-color
