@@ -8,7 +8,7 @@ on:
       - 'sam-comprehend/**'
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - 'sam-comprehend/**'
 
