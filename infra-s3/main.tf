@@ -1,10 +1,13 @@
 resource "aws_s3_bucket" "analysis" {
-  bucket = var.result_bucket_name
+  bucket = "${var.result_bucket_name}-${random_id.bucket_suffix.hex}"
 
   tags = {
     Project = "Analytics"
     Managed = "Terraform"
   }
+}
+resource "random_id" "bucket_suffix" {
+  byte_length = 4
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "midlertidig_lifecycle" {

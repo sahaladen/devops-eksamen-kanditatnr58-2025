@@ -6,8 +6,12 @@ variable "aws_region" {
 
 variable "result_bucket_name" {
   type        = string
+  default     = "kandidat-58-data"
   description = "Navn på S3-bucket for analyseresultater"
 }
+
+
+
 
 variable "transition_days" {
   type        = number
