@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket = "kandidat-58-data"
-    key    = "sahal-aden-state-lab.tfstate"
+    key    = "test"
     region = "eu-west-1"
   }
 }
