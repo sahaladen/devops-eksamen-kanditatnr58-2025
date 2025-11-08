@@ -64,5 +64,6 @@ jobs:
         run: |
           sam deploy \
             --stack-name kandidat-58-sentiment \
+            --s3-bucket kandidat-58-data \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
