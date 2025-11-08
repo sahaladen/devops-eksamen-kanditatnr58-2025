@@ -28,18 +28,22 @@ jobs:
       - name: Set up SAM CLI
         uses: aws-actions/setup-sam@v2
 
-
+      # Pull Request / Build Steps
       - name: SAM Validate (PR)
         if: github.event_name == 'pull_request'
         working-directory: ./sam-comprehend
+        env:
+          AWS_REGION: eu-west-1
         run: sam validate
 
       - name: SAM Build (PR)
         if: github.event_name == 'pull_request'
         working-directory: ./sam-comprehend
+        env:
+          AWS_REGION: eu-west-1
         run: sam build
 
-
+      # Push to main / Deploy Steps
       - name: Configure AWS credentials (Push)
         if: github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v2
@@ -51,21 +55,27 @@ jobs:
       - name: SAM Validate (Push)
         if: github.event_name == 'push'
         working-directory: ./sam-comprehend
+        env:
+          AWS_REGION: eu-west-1
         run: sam validate
 
       - name: SAM Build (Push)
         if: github.event_name == 'push'
         working-directory: ./sam-comprehend
+        env:
+          AWS_REGION: eu-west-1
         run: sam build
 
       - name: SAM Deploy (Push)
         if: github.event_name == 'push'
         working-directory: ./sam-comprehend
+        env:
+          AWS_REGION: eu-west-1
         run: |
           sam deploy \
             --stack-name kandidat-58-sentiment \
             --s3-bucket kandidat-58-data \
             --capabilities CAPABILITY_IAM \
-            --region eu-west-1 \
+            --region $AWS_REGION \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
