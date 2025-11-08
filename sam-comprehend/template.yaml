@@ -11,13 +11,14 @@ Globals:
 Parameters:
   S3BucketName:
     Type: String
-    Default: pgr301-sentiment-data
+    Default: kandidat-58-data
     Description: S3 bucket for storing sentiment analysis results
 
 Resources:
   SentimentAnalysisFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: kandidat-58-sentiment-analysis
       CodeUri: sentiment_function/
       Handler: app.lambda_handler
       Environment:

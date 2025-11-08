@@ -8,19 +8,10 @@ import hashlib
 comprehend = boto3.client('comprehend', region_name='eu-west-1')
 s3 = boto3.client('s3')
 
-S3_BUCKET = os.environ.get('S3_BUCKET', 'pgr301-sentiment-data')
+S3_BUCKET = os.environ.get('S3_BUCKET', 'kandidat-58-data')
 
 def lambda_handler(event, context):
-    """
-    Lambda function handler for sentiment analysis using Amazon Comprehend.
 
-    Expects POST request with body:
-    {
-        "text": "Article text to analyze..."
-    }
-
-    Returns sentiment analysis with company detection (basic entity extraction).
-    """
     try:
         # Parse request body
         if isinstance(event.get('body'), str):
