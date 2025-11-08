@@ -66,5 +66,6 @@ jobs:
             --stack-name kandidat-58-sentiment \
             --s3-bucket kandidat-58-data \
             --capabilities CAPABILITY_IAM \
+            --region eu-west-1 \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
