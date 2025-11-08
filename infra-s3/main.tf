@@ -5,8 +5,11 @@ resource "aws_s3_bucket" "analysis" {
     Project = "Analytics"
     Managed = "Terraform"
   }
-}
 
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "aws_s3_bucket_lifecycle_configuration" "midlertidig_lifecycle" {
   bucket = aws_s3_bucket.analysis.id

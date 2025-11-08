@@ -33,6 +33,10 @@ jobs:
         working-directory: ./infra-s3
         run: terraform init
 
+      - name: Terraform Import Existing Bucket
+        working-directory: ./infra-s3
+        run: terraform import aws_s3_bucket.analysis kandidat-58-data || echo "Bucket already imported"
+
       - name: Terraform Format Check
         if: github.event_name == 'pull_request'
         working-directory: ./infra-s3
