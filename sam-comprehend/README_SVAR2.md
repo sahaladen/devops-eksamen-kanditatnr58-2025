@@ -4,4 +4,5 @@ lenke til vellykket pull request: https://github.com/sahaladen/devops-eksamen-ka
 
 hvis du skal kjøre dette på din egen konto så kan det hende at du må endre hvor github actions pusher.
 for meg så var det master men du kan endre dette enkelt til main eller en annen branch hvis du vil.
-husk å legge til aws key og secret key i din github konto
+husk å legge til aws key og secret key i din github konto.
+hvis du kjører koden lokalt, bare husk å ha docker på.
