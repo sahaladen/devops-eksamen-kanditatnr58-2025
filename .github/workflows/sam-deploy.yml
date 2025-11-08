@@ -32,11 +32,15 @@ jobs:
       - name: SAM Validate
         working-directory: ./sam-comprehend
         if: github.event_name == 'pull_request'
+        env:
+          AWS_REGION: eu-west-1
         run: sam validate
 
       - name: SAM Build
         working-directory: ./sam-comprehend
         if: github.event_name == 'pull_request'
+        env:
+          AWS_REGION: eu-west-1
         run: sam build
 
       # Push to main / Deploy Steps
@@ -51,21 +55,27 @@ jobs:
       - name: SAM Validate
         working-directory: ./sam-comprehend
         if: github.event_name == 'push'
+        env:
+          AWS_REGION: eu-west-1
         run: sam validate
 
       - name: SAM Build
         working-directory: ./sam-comprehend
         if: github.event_name == 'push'
+        env:
+          AWS_REGION: eu-west-1
         run: sam build
 
       - name: SAM Deploy
         working-directory: ./sam-comprehend
         if: github.event_name == 'push'
+        env:
+          AWS_REGION: eu-west-1
         run: |
           sam deploy \
             --stack-name kandidat-58-sentiment \
             --s3-bucket kandidat-58-data \
             --capabilities CAPABILITY_IAM \
-            --region eu-west-1 \
+            --region $AWS_REGION \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
