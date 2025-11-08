@@ -65,5 +65,6 @@ jobs:
           sam deploy \
             --stack-name kandidat-58-sentiment \
             --s3-bucket kandidat-58-data \
+            --capabilities CAPABILITY_IAM \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
