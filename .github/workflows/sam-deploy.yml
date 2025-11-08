@@ -28,23 +28,19 @@ jobs:
       - name: Set up SAM CLI
         uses: aws-actions/setup-sam@v2
 
-      # Pull Request / Build Steps
-      - name: SAM Validate
-        working-directory: ./sam-comprehend
+
+      - name: SAM Validate (PR)
         if: github.event_name == 'pull_request'
-        env:
-          AWS_REGION: eu-west-1
+        working-directory: ./sam-comprehend
         run: sam validate
 
-      - name: SAM Build
-        working-directory: ./sam-comprehend
+      - name: SAM Build (PR)
         if: github.event_name == 'pull_request'
-        env:
-          AWS_REGION: eu-west-1
+        working-directory: ./sam-comprehend
         run: sam build
 
-      # Push to main / Deploy Steps
-      - name: Configure AWS credentials
+
+      - name: Configure AWS credentials (Push)
         if: github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -52,30 +48,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: SAM Validate
-        working-directory: ./sam-comprehend
+      - name: SAM Validate (Push)
         if: github.event_name == 'push'
-        env:
-          AWS_REGION: eu-west-1
+        working-directory: ./sam-comprehend
         run: sam validate
 
-      - name: SAM Build
-        working-directory: ./sam-comprehend
+      - name: SAM Build (Push)
         if: github.event_name == 'push'
-        env:
-          AWS_REGION: eu-west-1
+        working-directory: ./sam-comprehend
         run: sam build
 
-      - name: SAM Deploy
-        working-directory: ./sam-comprehend
+      - name: SAM Deploy (Push)
         if: github.event_name == 'push'
-        env:
-          AWS_REGION: eu-west-1
+        working-directory: ./sam-comprehend
         run: |
           sam deploy \
             --stack-name kandidat-58-sentiment \
             --s3-bucket kandidat-58-data \
             --capabilities CAPABILITY_IAM \
-            --region $AWS_REGION \
+            --region eu-west-1 \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset
