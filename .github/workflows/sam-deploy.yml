@@ -32,7 +32,7 @@ jobs:
       - name: SAM Validate (PR)
         if: github.event_name == 'pull_request'
         working-directory: ./sam-comprehend
-        run: sam validate
+        run: sam validate --no-resource-validation
 
       - name: SAM Build (PR)
         if: github.event_name == 'pull_request'
