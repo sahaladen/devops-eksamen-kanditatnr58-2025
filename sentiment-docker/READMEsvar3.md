@@ -4,6 +4,8 @@ for et eller annet grunn så laget repo-et mitt en master branch og alt er lagre
 lenke for vellykket workflow fil:
 https://github.com/sahaladen/devops-eksamen-kanditatnr58-2025/actions/runs/19484119996/job/55762391865 
 
+navn på container image i docker hub: somaler/sentiment-docker
+
 Jeg brukte docker/metadata-action som automatisk genererer flere tags basert på regler:
 Dette gir deg 3 tags automatisk:
 
