@@ -59,6 +59,36 @@ public class SentimentController {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
+    @PostMapping("/test-metrics")
+    public ResponseEntity<String> testMetrics() {
+        // Simulerer en analyse med dummy-data
+        long startTime = System.currentTimeMillis();
+
+        // Dummy selskaper med 4 argumenter
+        List<CompanySentiment> companies = List.of(
+                new CompanySentiment("AlphaCorp", "positive", 0.95, "Test reasoning for AlphaCorp"),
+                new CompanySentiment("BetaLtd", "negative", 0.70, "Test reasoning for BetaLtd")
+        );
+
+        // Oppdater Gauge
+        sentimentMetrics.recordCompaniesDetected(companies.size());
+
+        // Oppdater Counter, Timer og Confidence for hvert selskap
+        for (CompanySentiment company : companies) {
+            sentimentMetrics.recordAnalysis(company.getSentiment(), company.getCompany());
+
+            // Dummy confidence
+            sentimentMetrics.recordConfidence(company.getConfidence(), company.getSentiment(), company.getCompany());
+
+            // Dummy duration: 120ms
+            long duration = System.currentTimeMillis() - startTime + 120;
+            sentimentMetrics.recordDuration(duration, company.getCompany(), "test-model");
+        }
+
+        return ResponseEntity.ok("Metrics triggered for " + companies.size() + " companies");
+    }
+
+
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {

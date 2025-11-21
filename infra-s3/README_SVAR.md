@@ -1,1 +1,0 @@
-valgte å lage bucketen manuelt i S3 også importere den i github actions slik at hver gang endringer skjer så er det bare å pushe til github
